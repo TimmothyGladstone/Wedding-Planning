@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rudolf & Natalia — 25 July 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Cormorant:ital,wght@0,500;1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3EA;
+    --cream-deep: #EFE8D8;
+    --ink: #1E2B26;
+    --gold: #B6904F;
+    --gold-light: #D8BE8A;
+    --line: rgba(30, 43, 38, 0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- Decorative fan motif ---------- */
+  .fan {
+    width: 64px;
+    height: 32px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Header / Hero ---------- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+    background:
+      repeating-linear-gradient(135deg, transparent 0 38px, rgba(182,144,79,0.05) 38px 39px),
+      repeating-linear-gradient(45deg, transparent 0 38px, rgba(182,144,79,0.05) 38px 39px),
+      var(--cream);
+  }
+
+  .hero .eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 9vw, 5.5rem);
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero .ampersand {
+    display: block;
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+    color: var(--gold);
+    margin: 0.1em 0;
+  }
+
+  .hero .date-line {
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    color: var(--ink);
+  }
+
+  .hero .date-line span {
+    color: var(--gold);
+  }
+
+  /* ---------- Countdown ---------- */
+  .countdown {
+    display: flex;
+    gap: clamp(0.75rem, 3vw, 2.5rem);
+    margin: 1rem 0 2.5rem;
+  }
+
+  .countdown .unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 64px;
+  }
+
+  .countdown .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 7vw, 3.6rem);
+    font-weight: 500;
+    color: var(--ink);
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+    padding: 0.4rem 0.6rem;
+    min-width: 70px;
+    text-align: center;
+    position: relative;
+  }
+
+  .countdown .num::before,
+  .countdown .num::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+  }
+  .countdown .num::before { top: -4px; left: -4px; border-right: none; border-bottom: none; background: var(--cream); }
+  .countdown .num::after { bottom: -4px; right: -4px; border-left: none; border-top: none; background: var(--cream); }
+
+  .countdown .label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 0.6rem;
+    color: var(--ink);
+    opacity: 0.65;
+  }
+
+  .countdown .sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 7vw, 3.6rem);
+    color: var(--gold-light);
+    align-self: flex-start;
+    margin-top: 0.4rem;
+    display: none;
+  }
+
+  @media (min-width: 540px) {
+    .countdown .sep { display: block; }
+  }
+
+  .hero .scroll-hint {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  /* ---------- Sections ---------- */
+  section {
+    padding: 5rem 1.5rem;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title h2 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0 auto 3rem;
+    width: 160px;
+  }
+
+  .divider .line {
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .divider .diamond {
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* ---------- Cards (info, venues, recommendations) ---------- */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--cream-deep);
+    border: 1px solid var(--line);
+    padding: 2rem 1.75rem;
+    position: relative;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px solid var(--gold-light);
+    pointer-events: none;
+  }
+
+  .card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+
+  .card .meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.9rem;
+  }
+
+  .card p {
+    font-size: 0.95rem;
+  }
+
+  .card a.link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+    transition: opacity 0.2s ease;
+  }
+
+  .card a.link:hover { opacity: 0.6; }
+
+  /* ---------- Map embeds ---------- */
+  .map-wrap {
+    border: 1px solid var(--line);
+    padding: 10px;
+    background: var(--cream-deep);
+    margin-bottom: 1.5rem;
+  }
+
+  .map-wrap iframe {
+    width: 100%;
+    height: 320px;
+    border: 0;
+    display: block;
+  }
+
+  .map-caption {
+    text-align: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.9rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ---------- Schedule list ---------- */
+  .schedule {
+    list-style: none;
+  }
+
+  .schedule li {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+
+  .schedule li:last-child { border-bottom: none; }
+
+  .schedule .time {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    min-width: 90px;
+    flex-shrink: 0;
+  }
+
+  .schedule .event h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+  }
+
+  .schedule .event p {
+    font-size: 0.88rem;
+    opacity: 0.75;
+  }
+
+  /* ---------- Notice / placeholder ---------- */
+  .notice {
+    text-align: center;
+    font-size: 0.85rem;
+    font-style: italic;
+    font-family: 'Cormorant', serif;
+    color: var(--ink);
+    opacity: 0.6;
+    margin-top: 2rem;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    text-align: center;
+    padding: 4rem 1.5rem 3rem;
+    border-top: 1px solid var(--line);
+  }
+
+  footer .fan { margin-bottom: 1.25rem; }
+
+  footer p {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: clamp(1rem, 4vw, 2.5rem);
+    padding: 1.1rem 1rem;
+    background: rgba(247, 243, 234, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  nav a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#details">Details</a>
+  <a href="#location">Location</a>
+  <a href="#stay">Stay & Dine</a>
+</nav>
+
+<header class="hero" id="home">
+  <p class="eyebrow">Together with their families</p>
+  <h1>
+    Rudolf
+    <span class="ampersand">&amp;</span>
+    Natalia
+  </h1>
+  <p class="date-line">25 <span>·</span> July <span>·</span> 2027 — Solar de Pancas, Alenquer, Portugal</p>
+
+  <div class="countdown" id="countdown">
+    <div class="unit"><div class="num" id="days">00</div><div class="label">Days</div></div>
+    <div class="sep">:</div>
+    <div class="unit"><div class="num" id="hours">00</div><div class="label">Hours</div></div>
+    <div class="sep">:</div>
+    <div class="unit"><div class="num" id="minutes">00</div><div class="label">Minutes</div></div>
+    <div class="sep">:</div>
+    <div class="unit"><div class="num" id="seconds">00</div><div class="label">Seconds</div></div>
+  </div>
+
+  <p class="scroll-hint">Scroll for details</p>
+</header>
+
+<section id="details">
+  <div class="section-title"><h2>The celebration</h2></div>
+  <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+
+  <ul class="schedule">
+    <li>
+      <div class="time">15:00</div>
+      <div class="event">
+        <h4>Ceremony</h4>
+        <p>Church ceremony — venue and exact address to be confirmed.</p>
+      </div>
+    </li>
+    <li>
+      <div class="time">17:00</div>
+      <div class="event">
+        <h4>Cocktail hour</h4>
+        <p>Welcome drinks and canapés at Solar de Pancas.</p>
+      </div>
+    </li>
+    <li>
+      <div class="time">19:00</div>
+      <div class="event">
+        <h4>Dinner & celebration</h4>
+        <p>Reception, dinner, speeches and dancing into the night.</p>
+      </div>
+    </li>
+  </ul>
+
+  <p class="notice">Dress code, full schedule and additional details will be added here as the date approaches.</p>
+</section>
+
+<section id="location">
+  <div class="section-title"><h2>Location</h2></div>
+  <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps?q=Igreja+de+Santa+Quit%C3%A9ria+de+Meca,+Alenquer,+Portugal&output=embed"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <p class="map-caption">Ceremony — Igreja de Santa Quitéria de Meca</p>
+
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps?q=Solar+de+Pancas,+Alenquer,+Portugal&output=embed"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <p class="map-caption">Reception — Solar de Pancas (about 3 km from the church)</p>
+
+  <div class="card-grid" style="margin-bottom: 2.5rem;">
+    <div class="card">
+      <p class="meta">Ceremony</p>
+      <h3>Igreja de Santa Quitéria de Meca</h3>
+      <p>The historic basílica where the ceremony will take place, set in the countryside near Alenquer.</p>
+      <a class="link" href="https://maps.google.com/?cid=1530734410214013978" target="_blank" rel="noopener">View on map</a>
+    </div>
+    <div class="card">
+      <p class="meta">Reception</p>
+      <h3>Solar de Pancas</h3>
+      <p>A historic manor house and gardens, hosting the cocktail hour and reception.</p>
+      <a class="link" href="https://maps.google.com/?cid=5606870038303177558" target="_blank" rel="noopener">View on map</a>
+    </div>
+  </div>
+</section>
+
+<section id="stay">
+  <div class="section-title"><h2>Where to stay & dine</h2></div>
+  <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+
+  <div class="card-grid">
+    <div class="card">
+      <p class="meta">Accommodation</p>
+      <h3>Hotel suggestion</h3>
+      <p>A short drive from the venue, with comfortable rooms for guests staying overnight.</p>
+      <a class="link" href="#">View on map</a>
+    </div>
+    <div class="card">
+      <p class="meta">Accommodation</p>
+      <h3>Local guesthouse</h3>
+      <p>A charming, more intimate option in the heart of Alenquer.</p>
+      <a class="link" href="#">View on map</a>
+    </div>
+    <div class="card">
+      <p class="meta">Dining</p>
+      <h3>Restaurant recommendation</h3>
+      <p>Traditional Portuguese cuisine, ideal for a relaxed meal before or after the big day.</p>
+      <a class="link" href="#">View on map</a>
+    </div>
+    <div class="card">
+      <p class="meta">Dining</p>
+      <h3>Restaurant recommendation</h3>
+      <p>A cozy spot for lunch, perfect for guests exploring the region.</p>
+      <a class="link" href="#">View on map</a>
+    </div>
+  </div>
+
+  <p class="notice">Specific hotel and restaurant recommendations with links and addresses will be added closer to the wedding.</p>
+</section>
+
+<footer>
+  <p>Rudolf &amp; Natalia — 25 July 2027</p>
+</footer>
+
+<script>
+  const weddingDate = new Date('2027-07-25T15:00:00+01:00').getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance < 0) {
+      document.getElementById('countdown').innerHTML =
+        '<p style="font-family: \'Cormorant Garamond\', serif; font-size: 1.8rem;">We are married!</p>';
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
